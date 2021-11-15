@@ -131,3 +131,5 @@ def showFullUI(args):
     else:
         logging.error("Starting waydroid session")
         tools.actions.session_manager.start(args, showFullUI)
+
+# setprop waydroid.active_apps Waydroid && settings put global policy_control null 

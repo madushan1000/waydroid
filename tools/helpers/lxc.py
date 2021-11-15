@@ -306,7 +306,7 @@ def shell(args):
     command = ["lxc-attach", "-P", tools.config.defaults["lxc"],
                "-n", "waydroid", "--"]
     if args.COMMAND:
-        command.append(args.COMMAND)
+        command += args.COMMAND
     else:
         command.append("/system/bin/sh")
     subprocess.run(command, env={"PATH": os.environ['PATH'] + ":/system/bin:/vendor/bin"})
@@ -316,5 +316,5 @@ def logcat(args):
         logging.error("WayDroid container is {}".format(status(args)))
         return
     command = ["lxc-attach", "-P", tools.config.defaults["lxc"],
-               "-n", "waydroid", "--", "/system/bin/logcat"]
+               "-n", "waydroid", "--", "/system/bin/logcat"] + args.LOGCAT_ARGS[1:]
     subprocess.run(command)

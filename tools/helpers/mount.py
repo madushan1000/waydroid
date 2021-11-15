@@ -107,7 +107,7 @@ def umount_all(args, folder):
         if ismount(mountpoint):
             raise RuntimeError("Failed to umount: " + mountpoint)
 
-def mount(args, source, destination, create_folders=True, umount=False, readonly=True):
+def mount(args, source, destination, create_folders=True, umount=False, readonly=True, mtype=None):
     """
     Mount and create necessary directory structure.
     :param umount: when destination is already a mount point, umount it first.
@@ -128,7 +128,10 @@ def mount(args, source, destination, create_folders=True, umount=False, readonly
                             destination)
 
     # Actually mount the folder
-    tools.helpers.run.user(args, ["mount", source, destination])
+    if mtype ==  None:
+        tools.helpers.run.user(args, ["mount", source, destination])
+    else:
+        tools.helpers.run.user(args, ["mount", source, destination, "-t", mtype])
     if readonly:
         tools.helpers.run.user(args, ["mount", "-o", "remount,ro", source, destination])
 

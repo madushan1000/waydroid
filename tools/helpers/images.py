@@ -113,5 +113,7 @@ def mount_rootfs(args, images_dir):
     helpers.mount.bind_file(args, args.work + "/waydroid.prop",
                             tools.config.defaults["rootfs"] + "/vendor/waydroid.prop")
 
+    helpers.mount.mount(args, "tmpfs", tools.config.defaults["rootfs"] + "/acct", mtype="tmpfs")
+
 def umount_rootfs(args):
     helpers.mount.umount_all(args, tools.config.defaults["rootfs"])

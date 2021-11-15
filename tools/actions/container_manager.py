@@ -26,7 +26,6 @@ def start(args):
             props = f.read().splitlines()
         if not props:
             raise RuntimeError("waydroid_base.prop is broken!!?")
-
         add_prop("waydroid.host.user", "user_name")
         add_prop("waydroid.host.uid", "user_id")
         add_prop("waydroid.host.gid", "group_id")
