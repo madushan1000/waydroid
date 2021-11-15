@@ -115,5 +115,7 @@ def mount_rootfs(args, images_dir):
 
     helpers.mount.mount(args, "tmpfs", tools.config.defaults["rootfs"] + "/acct", mtype="tmpfs")
 
+    helpers.mount.overlay_mount(args, "./native-bridge/system", tools.config.defaults["rootfs"] + "/system" , tools.config.defaults["rootfs"] + "/system")
+
 def umount_rootfs(args):
     helpers.mount.umount_all(args, tools.config.defaults["rootfs"])

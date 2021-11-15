@@ -138,3 +138,9 @@ def mount(args, source, destination, create_folders=True, umount=False, readonly
     # Verify, that it has worked
     if not ismount(destination):
         raise RuntimeError("Mount failed: " + source + " -> " + destination)
+
+
+def overlay_mount(args, source1, source2, destination):
+    if ismount(destination):
+        return
+    tools.helpers.run.user(args, ["mount", "-t", "overlay", "overlay", "-o", "lowerdir=" + source1 + ":" + source2, destination])

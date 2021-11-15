@@ -32,6 +32,16 @@ def start(args):
         add_prop("waydroid.xdg_runtime_dir", "xdg_runtime_dir")
         add_prop("waydroid.pulse_runtime_path", "pulse_runtime_path")
         add_prop("waydroid.wayland_display", "wayland_display")
+
+        props.append("ro.product.cpu.abilist=x86_64,arm64-v8a,x86,armeabi-v7a,armeabi")
+        props.append("ro.product.cpu.abilist64=x86_64,arm64-v8a")
+        props.append("ro.product.cpu.abilist32=x86,armeabi-v7a,armeabi")
+        props.append("ro.dalvik.vm.isa.arm=x86"),
+        props.append("ro.dalvik.vm.isa.arm64=x86_64")
+        props.append("ro.enable.native.bridge.exec=1")
+        props.append("ro.dalvik.vm.native.bridge=libndk_translation.so")
+        props.append("ro.ndk_translation.version=0.2.2")
+
         if which("waydroid-sensord") is None:
             props.append("waydroid.stub_sensors_hal=1")
         dpi = session_cfg["session"]["lcd_density"]
